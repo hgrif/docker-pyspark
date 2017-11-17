@@ -25,8 +25,8 @@ RUN cd /opt/ \
     -O jdk-8.tar.gz \
   && tar xzf jdk-8.tar.gz \
   && rm jdk-8.tar.gz \
-  && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_151//bin/java 100 \
-  && update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_151//bin/jar 100 \
+  && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_151/bin/java 100 \
+  && update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_151/bin/jar 100 \
   && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_151/bin/javac 100
 
 # SPARK
@@ -44,6 +44,14 @@ RUN mkdir -p /usr/spark/work/ \
   && chmod -R 777 /usr/spark/work/
 
 ENV SPARK_MASTER_PORT 7077
+
+# Miniconda
+ENV CONDA_DIR /opt/miniconda
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
+    chmod a+x miniconda.sh && \
+    ./miniconda.sh -b -p $CONDA_DIR && \
+    rm ./miniconda.sh
+ENV PATH="$CONDA_DIR/bin/":$PATH
 
 RUN pip install --upgrade pip \
   && pip install pylint coverage --quiet
