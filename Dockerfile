@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.6
 
 MAINTAINER Fokko Driesprong <fokkodriesprong@godatadriven.com>
 
@@ -31,10 +31,10 @@ RUN cd /opt/ \
 
 # SPARK
 RUN cd /usr/ \
-  && wget http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz \
-  && tar xzf spark-2.1.0-bin-hadoop2.7.tgz \
-  && rm spark-2.1.0-bin-hadoop2.7.tgz \
-  && mv spark-2.1.0-bin-hadoop2.7 spark
+  && wget "http://apache.mirrors.spacedump.net/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz" \
+  && tar xzf spark-2.2.0-bin-hadoop2.7.tgz \
+  && rm spark-2.2.0-bin-hadoop2.7.tgz \
+  && mv spark-2.2.0-bin-hadoop2.7 spark
 
 ENV SPARK_HOME /usr/spark
 ENV SPARK_MAJOR_VERSION 2
