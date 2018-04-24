@@ -10,6 +10,7 @@ RUN update-ca-certificates -f \
     git \
     libatlas3-base \
     libopenblas-base \
+    libgl1-mesa-glx \
   && apt-get clean \
   && git config --global http.sslverify false
 
